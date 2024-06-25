@@ -9,13 +9,14 @@ function mergeSort(arr) {
   return merge(mergeSort(left), mergeSort(right));
 }
 
+// merge two sorted array into new sorted array
 function merge(left, right) {
   const result = [];
-  let leftIndex = 0,
-    rightIndex = 0;
+  let leftIndex = 0;
+  let rightIndex = 0;
 
   while (leftIndex < left.length && rightIndex < right.length) {
-    if (left[leftIndex] <= right[rightIndex]) {
+    if (left[leftIndex] < right[rightIndex]) {
       result.push(left[leftIndex]);
       leftIndex++;
     } else {
@@ -26,6 +27,5 @@ function merge(left, right) {
   return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
 }
 
-const array = [38, 27, 43, 3, 9, 82, 10];
-const sortedArray = mergeSort(array);
-console.log(sortedArray);
+let arr = [3, 1, 2, 5, 0, 9];
+console.log(mergeSort(arr));
