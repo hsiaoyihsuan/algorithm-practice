@@ -7,7 +7,7 @@ const graph = new Map<string, string[]>([
   ["F", ["C", "E"]],
 ]);
 
-function bfs(graph: Map<string, string[]>, start: string): void {
+export function bfs(graph: Map<string, string[]>, start: string): void {
   const visited = new Set<string>(); // Track visited nodes
   const queue: string[] = [start]; // Queue for BFS initialize with start node
   visited.add(start);
