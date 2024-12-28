@@ -33,6 +33,8 @@ function dfsIterative(graph: Map<string, string[]>, start: string): void {
   while (stack.length > 0) {
     const node = stack.pop()!;
 
+    if (visited.has(node)) continue;
+
     console.log(node); // Process the currrent node
     visited.add(node); // Mark as visited
 
