@@ -1,6 +1,6 @@
 let arr = [3, 2, 4, 5, 8, 1];
 function selectionSort(arr) {
-  // Fint min n times
+  // Find min n times
   for (let i = 0; i < arr.length; i++) {
     let minIndex = i;
     // Loop the rest of elements to find the min number
