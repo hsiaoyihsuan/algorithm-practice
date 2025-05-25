@@ -18,9 +18,9 @@ function dfsPreorderIterative(root: TreeNode | null) {
   const stack: TreeNode[] = [root];
 
   while (stack.length > 0) {
-    const node = stack.pop();
+    const node = stack.pop()!;
 
-    console.log(node!.val);
+    console.log(node.val);
 
     // Push right first so that left is processed first (LIFO)
     if (node?.right) stack.push(node.right);

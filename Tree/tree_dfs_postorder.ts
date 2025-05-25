@@ -14,11 +14,11 @@ function dfsPostorderIteration(root: TreeNode | null): void {
   if (!root) return;
 
   const stack: TreeNode[] = [root];
-  const output: number[] = [];
+  const output: TreeNode[] = [];
 
   while (stack.length > 0) {
     const node = stack.pop()!;
-    output.push(node.val);
+    output.push(node);
 
     if (node.left) stack.push(node.left);
     if (node.right) stack.push(node.right);
@@ -26,7 +26,7 @@ function dfsPostorderIteration(root: TreeNode | null): void {
 
   while (output.length > 0) {
     const node = output.pop()!;
-    console.log(node); // Process the current node
+    console.log(node.val); // Process the current node
   }
 }
 
