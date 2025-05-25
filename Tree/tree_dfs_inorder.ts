@@ -20,8 +20,8 @@ function dfsInorderIteration(root: TreeNode | null): void {
       stack.push(current);
       current = current.left;
     }
-
     // Current must be null at this point
+
     current = stack.pop()!;
     console.log(current.val); // Process the current node
 
