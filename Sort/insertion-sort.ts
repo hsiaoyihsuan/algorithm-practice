@@ -1,16 +1,15 @@
 // Inseriton Sort
-// Time: best O(n) worst O(n2), Space: O(1)
+// Time: O(n ^ 2), Space: O(1)
 // Sort the array in place
+// Stable sorting algorithm
 // Best for array that is small or nearly sorted
 export function insertionSort(arr: number[]): number[] {
   for (let i = 1; i < arr.length; i++) {
-    let current = arr[i];
     let j = i - 1;
-    while (j >= 0 && arr[j] > current) {
-      arr[j + 1] = arr[j];
+    while (j >= 0 && arr[j] > arr[j + 1]) {
+      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       j--;
     }
-    arr[j + 1] = current;
   }
   return arr;
 }
