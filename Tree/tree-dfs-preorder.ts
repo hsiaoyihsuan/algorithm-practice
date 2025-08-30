@@ -29,3 +29,20 @@ function dfsPreorderIterative(root: TreeNode | null) {
 }
 
 dfsPreorderIterative(root); // Output: 1, 2, 4, 5, 3
+
+function dfsPreorderIterative2(root: TreeNode | null) {
+  const stack: (TreeNode | null)[] = [];
+  let current: TreeNode | null = root;
+
+  while (current || stack.length > 0) {
+    if (current) {
+      console.log(current.val);
+      if (current.right) stack.push(current.right);
+      current = current.left;
+    } else {
+      current = stack.pop()!;
+    }
+  }
+}
+
+dfsPreorderIterative2(root); // Output: 1, 2, 4, 5, 3
