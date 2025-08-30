@@ -1,5 +1,6 @@
 import {root, TreeNode} from "./test_tree.ts";
 
+// Time: O(n), Space: O(h)
 function dfsInorderRecursion(root: TreeNode | null): void {
   if (!root) return;
 
@@ -10,6 +11,7 @@ function dfsInorderRecursion(root: TreeNode | null): void {
 
 dfsInorderRecursion(root); // Output: 4, 2, 5, 1, 3
 
+// Time: O(n), Space: O(h)
 function dfsInorderIteration(root: TreeNode | null): void {
   const stack: TreeNode[] = [];
   let current: TreeNode | null = root;
@@ -31,3 +33,22 @@ function dfsInorderIteration(root: TreeNode | null): void {
 }
 
 dfsInorderIteration(root); // Output: 4, 2, 5, 1, 3
+
+// Time: O(n), Space: O(h)
+function dfsInorderIteration2(root: TreeNode | null): void {
+  const stack: TreeNode[] = [];
+  let current: TreeNode | null = root;
+
+  while (current || stack.length > 0) {
+    if (current) {
+      stack.push(current);
+      current = current.left;
+    } else {
+      current = stack.pop()!;
+      console.log(current.val);
+      current = current.right;
+    }
+  }
+}
+
+dfsInorderIteration2(root); // Output: 4, 2, 5, 1, 3
