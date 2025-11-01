@@ -1,5 +1,5 @@
-class MinHeap {
-  public heap: number[];
+export class MinHeap {
+  private heap: number[];
   constructor() {
     this.heap = [0];
   }
@@ -16,13 +16,13 @@ class MinHeap {
     }
   }
 
-  pop() {
+  pop(): number | null {
     if (this.heap.length === 1) {
       return null;
     }
 
     if (this.heap.length === 2) {
-      return this.heap.pop();
+      return this.heap.pop()!;
     }
 
     const result = this.heap[1];
@@ -38,7 +38,7 @@ class MinHeap {
         this.heap[2 * i + 1] = this.heap[i];
         this.heap[i] = tmp;
         i = 2 * i + 1;
-      } else if (this.heap[2 * i] > this.heap[i]) {
+      } else if (this.heap[2 * i] < this.heap[i]) {
         const tmp = this.heap[2 * i];
         this.heap[2 * i] = this.heap[i];
         this.heap[i] = tmp;
@@ -50,11 +50,16 @@ class MinHeap {
 
     return result;
   }
-}
 
-const heap = new MinHeap();
-heap.push(5);
-heap.push(4);
-heap.push(3);
-heap.push(2);
-heap.push(1);
+  peek(): number | null {
+    return this.heap.length === 1 ? null : this.heap[1];
+  }
+
+  isEmpty(): boolean {
+    return this.heap.length === 1;
+  }
+
+  size(): number {
+    return this.heap.length - 1;
+  }
+}
