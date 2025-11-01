@@ -82,7 +82,6 @@ function combinations2(n: number, k: number): number[][] {
       helper(j + 1, curComb, combs, n, k);
       curComb.pop();
     }
-    curComb.pop();
   }
 
   const combs: number[][] = [];
