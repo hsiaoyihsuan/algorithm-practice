@@ -4,8 +4,9 @@ function heapify(arr: number[]): number[] {
 
   let cur = Math.floor((arr.length - 1) / 2);
   while (cur > 0) {
-    // Percolate Down
     let i = cur;
+
+    // Percolate Down
     while (2 * i < arr.length) {
       if (
         i * 2 + 1 < arr.length &&
