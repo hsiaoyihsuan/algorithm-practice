@@ -1,7 +1,7 @@
-// Q: Given a list of N items, and a backpack with a limited capacity, return the maximum total profit that can be contained in the backpack. The i-th item's profit is profit[i] and its weight is weight[i]. Assume you can only add each item to the bag at most once.
+// Q: Given a list of N items, and a backpack with a limited capacity, return the maximum total profit that can be contained in the backpack. The i-th item's profit is profit[i] and its weight is weight[i]. Assume you can have an unlimited number of each item available.
 
 // Mehod 1: Brute force Solution
-// Time: O(2^n), Space: O(n)
+// Time: O(2^capacity), Space: O(capacity)
 export function knapsack(profit: number[], weight: number[], capacity: number) {
   function dfs(i: number, capacity: number): number {
     if (i >= profit.length || capacity === 0) return 0;
@@ -11,7 +11,7 @@ export function knapsack(profit: number[], weight: number[], capacity: number) {
 
     // Option 2: take current item (only if it fits)
     if (capacity >= weight[i]) {
-      const take = profit[i] + dfs(i + 1, capacity - weight[i]);
+      const take = profit[i] + dfs(i, capacity - weight[i]);
       result = Math.max(result, take);
     }
 
@@ -44,7 +44,7 @@ export function knapsackMemo(
 
     // Option 2: take current item (only if it fits)
     if (capacity >= weight[i]) {
-      const take = profit[i] + dfs(i + 1, capacity - weight[i]);
+      const take = profit[i] + dfs(i, capacity - weight[i]);
       result = Math.max(result, take);
     }
 
@@ -68,13 +68,8 @@ export function knapsackDp(
   const dp = Array.from({length: n}, () => new Array(capacity + 1).fill(0));
 
   // Fill the first column and row to reduce edge cases
-  for (let i = 0; i < n; i++) {
-    dp[i][0] = 0;
-  }
   for (let i = 0; i <= capacity; i++) {
-    if (i < weight[0]) {
-      dp[0][i] = 0;
-    } else {
+    if (i >= weight[0]) {
       dp[0][i] = profit[0];
     }
   }
@@ -85,7 +80,7 @@ export function knapsackDp(
       dp[r][c] = dp[r - 1][c];
       if (c >= weight[r]) {
         // Option 2: take current item
-        const take = profit[r] + dp[r - 1][c - weight[r]];
+        const take = profit[r] + dp[r][c - weight[r]];
         dp[r][c] = Math.max(dp[r][c], take);
       }
     }
@@ -109,7 +104,7 @@ export function knapsackDpOptimized(
       curRow[c] = dp[c];
       if (c >= weight[r]) {
         // Option 2: take current item
-        const take = profit[r] + dp[c - weight[r]];
+        const take = profit[r] + curRow[c - weight[r]];
         curRow[c] = Math.max(curRow[c], take);
       }
     }
