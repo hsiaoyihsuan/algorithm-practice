@@ -25,12 +25,10 @@ export function longest(s: string): number {
 
   for (let i = 0; i < s.length; i++) {
     // odd length
-    let l = i,
-      r = i;
-    while (l >= 0 && r < s.length && s.charAt(l) === s.charAt(r)) {
-      if (r - l + 1 > length) {
-        length = r - l + 1;
-      }
+    let l = i;
+    let r = i;
+    while (l >= 0 && r < s.length && s[l] === s[r]) {
+      length = Math.max(length, r - l + 1);
       l--;
       r++;
     }
@@ -38,13 +36,13 @@ export function longest(s: string): number {
     // even length
     l = i;
     r = i + 1;
-    while (l >= 0 && r < s.length && s.charAt(l) === s.charAt(r)) {
-      if (r - l + 1 > length) {
-        length = r - l + 1;
-      }
+    while (l >= 0 && r < s.length && s[l] === s[r]) {
+      length = Math.max(length, r - l + 1);
       l--;
       r++;
     }
   }
   return length;
 }
+
+console.log(longest("abaab"));
