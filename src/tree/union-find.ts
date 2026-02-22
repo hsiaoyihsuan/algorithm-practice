@@ -1,4 +1,4 @@
-class UnionFind {
+export class UnionFind {
   private pair: Map<number, number>;
   private rank: Map<number, number>;
 
